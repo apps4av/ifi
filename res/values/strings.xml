@@ -14,7 +14,7 @@ Redistribution and use in source and binary forms, with or without modification,
     <string name="app_name">Gyro</string>
     <string name="Help">Help</string>
     <string name="Reset">Reset</string>
-    <string name="help">http://apps4av.com/avare-overview/avare-help/</string>
+    <string name="help">http://apps4av.com/in-flight-instruments-overview/</string>
     <string name="settings">Settings</string>
     <string name="title_activity_main">Gyro</string>
     <string name="Warn">This software is not FAA certified.\nThe author of this software is not liable for any injuries or damages caused by its use.\nYour Android device must have a gyroscope and sensor fusion for correct operation.\n</string>
@@ -25,4 +25,5 @@ Redistribution and use in source and binary forms, with or without modification,
     <string name="ScreenOn">&quot;Screen Timeout&quot;</string>
     <string name="ScreenOnLabel">&quot;Keep Screen On&quot;</string>
     <string name="ScreenOnSummary">&quot;Select to keep screen on while application is running&quot;</string>
+    <string name="ResetHelp">&quot;Instruments reset.\nTo calibrate AI, hold in position, then long touch on it.\nTo calibrate HI, touch and drag finger on it.&quot;</string>
 </resources>

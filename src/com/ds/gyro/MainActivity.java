@@ -30,6 +30,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -183,7 +184,9 @@ public class MainActivity extends Activity implements SensorEventListener {
     		case R.id.reset:
     	        Message msg = handler.obtainMessage();
     	        msg.what = 1;
-    	        handler.sendMessage(msg);    		    
+    	        handler.sendMessage(msg);
+    	        
+    	        Toast.makeText(this, getString(R.string.ResetHelp), Toast.LENGTH_LONG).show();
                 break;
         }
     	return true;
