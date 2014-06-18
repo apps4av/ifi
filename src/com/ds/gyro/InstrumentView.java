@@ -273,9 +273,9 @@ public class InstrumentView extends View implements OnTouchListener {
 	 * @param pitch
 	 * @param roll
 	 */
-	private void updateCoordinates(float roll, float pitch, float yaw) {
+	public void updateCoordinates(float roll, float pitch, float yaw) {
     	boolean inv = false;
-    	CurrentPitch = pitch;
+    	CurrentPitch = -pitch;
         CurrentRoll = -roll;
         currentYaw = yaw;
     	
@@ -313,46 +313,6 @@ public class InstrumentView extends View implements OnTouchListener {
     public void onDraw(Canvas canvas) {
         drawInstruments(canvas);
     }
-
-	/**
-	 * @param rpy
-	 * @param q
-	 * http://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles
-	 */
-	private void getRollPitchYaw(float rpy[], float q[]) {
-		rpy[0] = (float)Math.atan2(2 * (q[0] * q[1] + q[2] * q[3]), 1 - 2 * (q[1] * q[1] + q[2] * q[2])) * 57.3f;
-		rpy[1] = (float)Math.asin(2 * (q[0] * q[2] - q[3] * q[1])) * 57.3f;
-		rpy[2] = (float)Math.atan2(2 * (q[0] * q[3] + q[1] * q[2]), 1 - 2 * (q[2] * q[2] + q[3] * q[3])) * 57.3f;
-	}
-	
-	/**
-	 * @param q
-	 */
-	void setQuarterion(float q[], int order) {
-	    float[] angles = new float[3];
-		getRollPitchYaw(angles, q);
-		
-		switch(order) {
-			case 0:
-				updateCoordinates(angles[1], angles[0], angles[2]);
-				break;
-			case 1:
-				updateCoordinates(angles[1], angles[2], angles[0]);
-				break;
-			case 2:
-				updateCoordinates(angles[0], angles[1], angles[2]);
-				break;
-			case 3:
-				updateCoordinates(angles[0], angles[2], angles[1]);
-				break;
-			case 4:
-				updateCoordinates(angles[2], angles[1], angles[0]);
-				break;
-			case 5:
-				updateCoordinates(angles[2], angles[0], angles[1]);
-				break;
-		}
-	}
 
     @Override
     public boolean onTouch(View v, MotionEvent e) {

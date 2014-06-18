@@ -65,14 +65,29 @@ public class MainActivity extends Activity implements SensorEventListener {
 		@Override
 		public void handleMessage(Message msg) {
 			super.handleMessage(msg);
+	        float q[] = new float[16];
+	        float[] orientationTmps = new float[3];
+
 			if(0 == msg.what) {
     			SensorEvent event;
     			event = (SensorEvent)msg.obj;
     			switch (event.sensor.getType()) {
     				case Sensor.TYPE_ROTATION_VECTOR:
-    					float q[] = new float[4];
-    					SensorManager.getQuaternionFromVector(q, event.values);
-    					view.setQuarterion(q, mPreferences.getOrder());
+    		            SensorManager.getRotationMatrixFromVector(q, event.values);
+    		            
+    		            SensorManager
+    		            .remapCoordinateSystem(q,
+    		                    SensorManager.AXIS_X, SensorManager.AXIS_Z,
+    		                    q);
+    		            
+    		            SensorManager.getOrientation(q, orientationTmps);
+    		            
+    		             view.updateCoordinates(
+    		                     (float) Math.toDegrees(orientationTmps[2]),
+    		                     (float) Math.toDegrees(orientationTmps[1]),
+    		                     (float) Math.toDegrees(orientationTmps[0])
+    		                     );
+
     					break;
     			}
 			}
